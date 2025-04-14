@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from waitress import serve  # Import Waitress for deployment
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -66,8 +67,8 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-# Run Flask App
+# Run Flask App with Waitress (Instead of Gunicorn)
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create the database
-    app.run(debug=True)
+    serve(app, host='0.0.0.0', port=10000)  # Waitress Server
