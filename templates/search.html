@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find a Medical Helper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Medical Services</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Find a Medical Professional Near You</h2>
+        <form class="card p-4 shadow-sm mx-auto" style="max-width: 500px;">
+            <div class="mb-3">
+                <label for="serviceType" class="form-label">Select Service Type</label>
+                <select id="serviceType" class="form-select">
+                    <option selected disabled>Choose...</option>
+                    <option>Nurse</option>
+                    <option>Technician</option>
+                    <option>Blood Donor</option>
+                    <option>Medical Equipment Provider</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Enter Your Location</label>
+                <input type="text" id="location" class="form-control" placeholder="e.g., Hyderabad, IN">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Search</button>
+        </form>
+    </div>
+</body>
+</html>

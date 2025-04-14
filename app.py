@@ -68,6 +68,9 @@ def logout():
     return redirect(url_for('home'))
 
 # Run Flask App with Waitress (Instead of Gunicorn)
+@app.route('/search')
+def search():
+    return render_template('search.html')
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create the database
