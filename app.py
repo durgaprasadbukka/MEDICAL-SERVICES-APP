@@ -28,7 +28,7 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
-    return "Welcome to Medical Services App! <a href='/register'>Register</a> | <a href='/login'>Login</a>"
+    return render_template('home.html')
 
 # Register Route
 @app.route('/register', methods=['GET', 'POST'])
