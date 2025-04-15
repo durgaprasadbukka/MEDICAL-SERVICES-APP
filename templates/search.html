@@ -1,24 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Find Medical Services</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Search Medical Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 1px 1px 5px #ccc;
+        }
+        .card h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        .card p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Find Nearby Medical Services</h2>
-        <form method="POST" action="/search" class="p-4 shadow bg-white rounded">
-            <div class="mb-3">
-                <label for="serviceType" class="form-label">What are you looking for?</label>
-                <input type="text" class="form-control" id="serviceType" name="serviceType" placeholder="e.g., Nurse, Technician, Blood Donor">
+<body>
+    <h1>Search Medical Services</h1>
+
+    <form method="get" action="{{ url_for('search') }}" class="search-bar">
+        <input type="text" name="query" placeholder="Search by name, location, or type" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <h2>Search Results:</h2>
+        {% for service in results %}
+            <div class="card">
+                <h3>{{ service.name }}</h3>
+                <p><strong>Location:</strong> {{ service.location }}</p>
+                <p><strong>Type:</strong> {{ service.service_type }}</p>
             </div>
-            <div class="mb-3">
-                <label for="location" class="form-label">Enter your location</label>
-                <input type="text" class="form-control" id="location" name="location" placeholder="e.g., Hyderabad, IN">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Search</button>
-        </form>
-    </div>
+        {% endfor %}
+    {% elif query %}
+        <p>No results found for "{{ query }}".</p>
+    {% endif %}
 </body>
 </html>
