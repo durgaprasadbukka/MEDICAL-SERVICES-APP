@@ -1,6 +1,6 @@
 # 🏥 Medical Services App
 
-A one-stop solution for accessing essential healthcare services — appointments, medical records, provider info, and more — all in one place.
+A one-stop solution for accessing essential healthcare services — all in one place.
 
 ---
 
