@@ -1,51 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Search Medical Services</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .search-bar {
-            margin-bottom: 20px;
-        }
-        .card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            box-shadow: 1px 1px 5px #ccc;
-        }
-        .card h3 {
-            margin: 0;
-            color: #2c3e50;
-        }
-        .card p {
-            margin: 5px 0;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(120deg, #f2fbff, #e1f0ff);
+      padding: 40px;
+      color: #2c3e50;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #0077b6;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    nav a {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #00b4d8;
+      color: white;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background-color: #0077b6;
+    }
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-box input {
+      padding: 12px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 6px 0 0 6px;
+    }
+    .search-box button {
+      padding: 12px;
+      background-color: #0096c7;
+      color: white;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+    }
+    .card {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      max-width: 700px;
+    }
+    .card h3 {
+      margin-bottom: 8px;
+    }
+    .card p {
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <h1>Search Medical Services</h1>
+  <header>
+    <h1>Medical Services Finder</h1>
+  </header>
 
-    <form method="get" action="{{ url_for('search') }}" class="search-bar">
-        <input type="text" name="query" placeholder="Search by name, location, or type" value="{{ query }}">
-        <button type="submit">Search</button>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/search">Search</a>
+  </nav>
+
+  <div class="search-box">
+    <form method="get" action="/search">
+      <input type="text" name="query" placeholder="Search nurse, oxygen, location...">
+      <button type="submit">Search</button>
     </form>
+  </div>
 
-    {% if results %}
-        <h2>Search Results:</h2>
-        {% for service in results %}
-            <div class="card">
-                <h3>{{ service.name }}</h3>
-                <p><strong>Location:</strong> {{ service.location }}</p>
-                <p><strong>Type:</strong> {{ service.service_type }}</p>
-            </div>
-        {% endfor %}
-    {% elif query %}
-        <p>No results found for "{{ query }}".</p>
-    {% endif %}
+  {% if results %}
+    {% for service in results %}
+      <div class="card">
+        <h3>{{ service.name }}</h3>
+        <p><strong>Location:</strong> {{ service.location }}</p>
+        <p><strong>Service Type:</strong> {{ service.service_type }}</p>
+      </div>
+    {% endfor %}
+  {% elif query %}
+    <p style="text-align:center;">No results found for "{{ query }}".</p>
+  {% endif %}
+
 </body>
 </html>
